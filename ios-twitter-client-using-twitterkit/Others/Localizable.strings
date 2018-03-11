@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  ios-twitter-client-using-twitterkit
+
+  Created by OkuderaYuki on 2018/03/11.
+  Copyright © 2018年 OkuderaYuki. All rights reserved.
+*/
+
+// MARK: - Alert Button
+"ALERT_OK" = "OK";
+
+// MARK: - Message
+"OFFLINE" = "通信環境の良い場所で再度お試しください。";
+"TIMEOUT" = "タイムアウトになりました。";
+"SESSION_IS_NIL" = "セッションが切れています。\n再度お試しください。";
+"FAILED_TO_GET_TIMELINE" = "タイムラインの取得に失敗しました。";
