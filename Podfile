@@ -10,11 +10,6 @@ target 'ios-twitter-client-using-twitterkit' do
     # Pods for testing
   end
 
-  target 'ios-twitter-client-using-twitterkitUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
 plugin 'cocoapods-keys', {
   :project => "ios-twitter-client-using-twitterkit",
   :keys => [
