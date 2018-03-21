@@ -9,13 +9,48 @@
 import Foundation
 import RealmSwift
 
-final class RealmDaoHelper <T: RealmSwift.Object> {
+protocol RealmDaoHelperProtocol {
+    associatedtype T: RealmSwift.Object
 
-    let realm: Realm
+    var realm: Realm {get set}
+
+    /// 新規主キー発行
+    func newId() -> Int?
+
+    /// レコードを追加
+    func add(d :T)
+
+    /// 全件取得
+    func findAll() -> Results<T>
+
+    /// 1件目のみ取得
+    func findFirst() -> T?
+
+    /// 指定キーのレコードを取得
+    func findFirst(key: AnyObject) -> T?
+
+    /// 最後のレコードを取得
+    func findLast() -> T?
+
+    /// レコードを更新する
+    ///
+    /// T: RealmSwift.Object で primaryKey()が実装されている時のみ有効
+    func update(d: T, block:(() -> Void)?) -> Bool
+
+    /// レコード削除
+    func delete(d: T)
+
+    /// レコード全削除
+    func deleteAll()
+}
+
+final class RealmDaoHelper <T: RealmSwift.Object>: RealmDaoHelperProtocol {
+
+    var realm: Realm
 
     init() {
         do {
-            if RealmDaoHelper.isTesting() {
+            if BuildTargetChecker.isTesting() {
                 // XCTest実行の場合はUT用のConfigurationを設定
                 realm = try Realm(configuration: UTRealm.makeRealmConfig())
             } else {
@@ -27,16 +62,8 @@ final class RealmDaoHelper <T: RealmSwift.Object> {
         }
     }
 
-    /// XCTest実行中かどうかチェックする
-    ///
-    /// - Returns: true: XCTest実行中, false: XCTest実行中でない
-    static func isTesting() -> Bool {
-        return ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
-    }
-
     // MARK: - newId
 
-    /// 新規主キー発行
     func newId() -> Int? {
         guard let key = T.primaryKey() else {
             //primaryKey未設定
@@ -45,31 +72,8 @@ final class RealmDaoHelper <T: RealmSwift.Object> {
         return (realm.objects(T.self).max(ofProperty: key) as Int? ?? 0) + 1
     }
 
-    // MARK: - find
-
-    /// 全件取得
-    func findAll() -> Results<T> {
-        return realm.objects(T.self)
-    }
-
-    /// 1件目のみ取得
-    func findFirst() -> T? {
-        return findAll().first
-    }
-
-    /// 指定キーのレコードを取得
-    func findFirst(key: AnyObject) -> T? {
-        return realm.object(ofType: T.self, forPrimaryKey: key)
-    }
-
-    /// 最後のレコードを取得
-    func findLast() -> T? {
-        return findAll().last
-    }
-
     // MARK: - add
 
-    /// レコード追加を取得
     func add(d :T) {
         do {
             try realm.write {
@@ -80,9 +84,26 @@ final class RealmDaoHelper <T: RealmSwift.Object> {
         }
     }
 
+    // MARK: - find
+
+    func findAll() -> Results<T> {
+        return realm.objects(T.self)
+    }
+
+    func findFirst() -> T? {
+        return findAll().first
+    }
+
+    func findFirst(key: AnyObject) -> T? {
+        return realm.object(ofType: T.self, forPrimaryKey: key)
+    }
+
+    func findLast() -> T? {
+        return findAll().last
+    }
+
     // MARK: - update
 
-    /// T: RealmSwift.Object で primaryKey()が実装されている時のみ有効
     func update(d: T, block:(() -> Void)? = nil) -> Bool {
         do {
             try realm.write {
@@ -98,7 +119,6 @@ final class RealmDaoHelper <T: RealmSwift.Object> {
 
     // MARK: - delete
 
-    /// レコード削除
     func delete(d: T) {
         do {
             try realm.write {
@@ -109,7 +129,6 @@ final class RealmDaoHelper <T: RealmSwift.Object> {
         }
     }
 
-    /// レコード全削除
     func deleteAll() {
         let objs = realm.objects(T.self)
         do {

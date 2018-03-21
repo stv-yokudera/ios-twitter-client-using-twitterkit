@@ -35,6 +35,7 @@
 		B67FCE532055039300125E23 /* HomeTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67FCE522055039300125E23 /* HomeTimelineProvider.swift */; };
 		B67FCE552055045300125E23 /* NetworkConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67FCE542055045300125E23 /* NetworkConnection.swift */; };
 		B67FCE5A205514DF00125E23 /* AlertHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67FCE59205514DF00125E23 /* AlertHelperTests.swift */; };
+		B6EE274E20624C5100CE9268 /* BuildTargetChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EE274D20624C5100CE9268 /* BuildTargetChecker.swift */; };
 		B6F908872055199C00C86BA7 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B67FCE422055002600125E23 /* Realm.framework */; };
 		B6F908882055199C00C86BA7 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B67FCE452055002600125E23 /* RealmSwift.framework */; };
 		B6F9088C20551C8600C86BA7 /* HomeTimelineParamsBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F9088B20551C8600C86BA7 /* HomeTimelineParamsBuilderTests.swift */; };
@@ -97,6 +98,7 @@
 		B67FCE522055039300125E23 /* HomeTimelineProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTimelineProvider.swift; sourceTree = "<group>"; };
 		B67FCE542055045300125E23 /* NetworkConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnection.swift; sourceTree = "<group>"; };
 		B67FCE59205514DF00125E23 /* AlertHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHelperTests.swift; sourceTree = "<group>"; };
+		B6EE274D20624C5100CE9268 /* BuildTargetChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildTargetChecker.swift; sourceTree = "<group>"; };
 		B6F9088B20551C8600C86BA7 /* HomeTimelineParamsBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTimelineParamsBuilderTests.swift; sourceTree = "<group>"; };
 		B6F9088D20551D5400C86BA7 /* HomeTimelineTweetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTimelineTweetTests.swift; sourceTree = "<group>"; };
 		B6F9089020551DA300C86BA7 /* DummyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyResponse.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				B67FCE2D2054C09400125E23 /* Constants.swift */,
 				B67FCE542055045300125E23 /* NetworkConnection.swift */,
 				B67FCE502055018300125E23 /* RealmDaoHelper.swift */,
+				B6EE274D20624C5100CE9268 /* BuildTargetChecker.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -605,6 +608,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6EE274E20624C5100CE9268 /* BuildTargetChecker.swift in Sources */,
 				B6F908AA205534AA00C86BA7 /* String+Localized.swift in Sources */,
 				B6F908A2205524BF00C86BA7 /* Date+ToStr.swift in Sources */,
 				B67FCDF82053CF0E00125E23 /* HomeTimelineViewController.swift in Sources */,
