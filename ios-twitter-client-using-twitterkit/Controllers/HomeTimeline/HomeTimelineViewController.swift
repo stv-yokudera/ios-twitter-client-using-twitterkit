@@ -58,6 +58,7 @@ final class HomeTimelineViewController: UIViewController {
     private func setupTableView() {
         tableView.estimatedRowHeight = TweetCell.estimatedRowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.prefetchDataSource = provider
         tableView.dataSource = provider
         tableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: .pullToRefresh, for: .valueChanged)
